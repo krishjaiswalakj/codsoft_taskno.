@@ -1,0 +1,231 @@
+#include <iostream>
+#include <cstdlib> // random genrate
+#include <ctime>   // time
+using namespace std;
+
+char board[3][3] = { {'1','2','3'},
+                     {'4','5','6'},
+                     {'7','8','9'} };
+// print board
+void displayBoard() {
+    cout << "\n";
+    cout << " " << board[0][0] << " | " << board[0][1] << " | " << board[0][2] << "\n";
+    cout << "---|---|---\n";
+    cout << " " << board[1][0] << " | " << board[1][1] << " | " << board[1][2] << "\n";
+    cout << "---|---|---\n";
+    cout << " " << board[2][0] << " | " << board[2][1] << " | " << board[2][2] << "\n";
+    cout << "\n";
+}
+
+bool Win() {
+    // check row and column
+    for (int i = 0; i < 3; i++) {
+        if (board[i][0] == board[i][1] && board[i][1] == board[i][2]) return true;
+        if (board[0][i] == board[1][i] && board[1][i] == board[2][i]) return true;
+    }
+    // check diagonals
+    if (board[0][0] == board[1][1] && board[1][1] == board[2][2]) return true;
+    if (board[0][2] == board[1][1] && board[1][1] == board[2][0]) return true;
+
+    return false;
+}
+
+bool Draw() {
+    for (int i = 0; i < 3; i++)
+        for (int j = 0; j < 3; j++)
+            if (board[i][j] != 'X' && board[i][j] != 'O')
+                return false;
+    return true;
+}
+
+
+
+
+int function1(){
+    int player1=1;
+    char mark1='X';
+    int player2=1;
+    char mark2='O';
+    int choice,i,j;
+    displayBoard();
+    cout<<"player1 enter the no. between (1-9)"<<endl;
+    cin>>choice;
+       
+    if      (choice == 1) { i = 0; j = 0; }
+    else if (choice == 2) { i = 0; j = 1; }
+    else if (choice == 3) { i = 0; j = 2; }
+    else if (choice == 4) { i = 1; j = 0; }
+    else if (choice == 5) { i = 1; j = 1; }
+    else if (choice == 6) { i = 1; j = 2; }
+    else if (choice == 7) { i = 2; j = 0; }
+    else if (choice == 8) { i = 2; j = 1; }
+    else if (choice == 9) { i = 2; j = 2; }
+        
+    if (choice >= 1 && choice <= 9 && board[i][j] != 'X' && board[i][j] != 'O') {
+        board[i][j] = mark1;
+    } else {
+        cout << "Invalid move! Try again.\n";
+        function1();
+    }
+    Win();
+    Draw();
+    return 0;
+}
+
+int function2(){
+    int player1=1;
+    char mark1='X';
+    int player2=1;
+    char mark2='O';
+    int choice,i,j;
+    displayBoard();
+    cout<<"player2 enter the no. between (1-9)"<<endl;
+    // random number generator 
+    srand(time(0));
+    //  number genrate between 1 and 10
+   do {
+        choice = rand() % 9 + 1;
+    } while (board[(choice - 1) / 3][(choice - 1) % 3] == 'X' ||
+             board[(choice - 1) / 3][(choice - 1) % 3] == 'O');
+
+
+    cout << "computer " << choice;
+    if      (choice == 1) { i = 0; j = 0; }
+    else if (choice == 2) { i = 0; j = 1; }
+    else if (choice == 3) { i = 0; j = 2; }
+    else if (choice == 4) { i = 1; j = 0; }
+    else if (choice == 5) { i = 1; j = 1; }
+    else if (choice == 6) { i = 1; j = 2; }
+    else if (choice == 7) { i = 2; j = 0; }
+    else if (choice == 8) { i = 2; j = 1; }
+    else if (choice == 9) { i = 2; j = 2; }
+    if (choice >= 1 && choice <= 9 && board[i][j] != 'X' && board[i][j] != 'O') {
+        board[i][j] = mark2 ;
+    } else {
+        cout << "Invalid move! Try again.\n";
+        function2();
+    
+    }
+    Win();
+    Draw();
+    return 0;
+}
+
+int function3(){
+    int player1=1;
+    char mark1='X';
+    int player2=1;
+    char mark2='O';
+    int choice,i,j;
+    displayBoard();
+    cout<<"player2 enter the no. between (1-9)"<<endl;
+   cin>>choice;
+    if      (choice == 1) { i = 0; j = 0; }
+    else if (choice == 2) { i = 0; j = 1; }
+    else if (choice == 3) { i = 0; j = 2; }
+    else if (choice == 4) { i = 1; j = 0; }
+    else if (choice == 5) { i = 1; j = 1; }
+    else if (choice == 6) { i = 1; j = 2; }
+    else if (choice == 7) { i = 2; j = 0; }
+    else if (choice == 8) { i = 2; j = 1; }
+    else if (choice == 9) { i = 2; j = 2; }
+    if (choice >= 1 && choice <= 9 && board[i][j] != 'X' && board[i][j] != 'O') {
+        board[i][j] = mark2 ;
+    } else {
+        cout << "Invalid move! Try again.\n";
+        function2();
+    
+    }
+    Win();
+    Draw();
+    return 0;
+}
+
+
+int main() {
+    
+    int play;
+    cout<<"WELLCOME TO TIC TAC TOE ('X' / 'O' )"<<endl;
+    cout<<"what do you want to play"<<endl;
+    cout<<"press 1 to play with computer"<<endl;
+    cout<<"press 2 to play 2 players"<<endl;
+    cin>>play;
+    switch (play) {
+        case 1 :  // Play with computer
+             while(true){
+                 system("pause");
+                 system("cls");
+           function1();
+           if (Win()) {
+                displayBoard();
+                cout << " Player1 wins!\n";
+                break;
+            }
+    
+            if (Draw()) {
+                displayBoard();
+                cout << " It's a draw!\n";
+                break;
+            }
+
+       function2();
+        
+            
+            
+       if (Win()) {
+            displayBoard();
+            cout << " computer wins!\n";
+            break;
+        }
+
+        if (Draw()) {
+            displayBoard();
+            cout << " It's a draw!\n";
+            break;
+        }
+    }
+        break;
+
+    
+        
+        
+        
+        case 2:  // 2 Players game
+            while(true){
+               function1();
+               if (Win()) {
+                    displayBoard();
+                    cout << " Player1 wins!\n";
+                    break;
+                }
+        
+                if (Draw()) {
+                    displayBoard();
+                    cout << " It's a draw!\n";
+                    break;
+                }
+    
+               function3();
+               if (Win()) {
+                    displayBoard();
+                    cout << " Player2 wins!\n";
+                    break;
+                }
+        
+                if (Draw()) {
+                    displayBoard();
+                    cout << " It's a draw!\n";
+                    break;
+                }
+            }
+        break;
+        
+        
+        default:
+            cout<<"invelid choice"<<endl;
+
+    }
+    cout<<"THANKS FOR PLAYING"<<endl;
+    
+    return 0;
+}
