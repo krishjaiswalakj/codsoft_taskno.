@@ -1,0 +1,104 @@
+#include <iostream>
+#include <cstdlib> // for rand() and srand()
+#include <ctime>   // for time()
+
+using namespace std;
+
+int main() {
+    start:
+    int choice,guess,random,again;
+    cout<<"WELLCOME TO GUESS THE NUMBER GAME"<<endl;
+    cout<<"There are 3 modes"<<endl;
+    cout<<"for easy press 1"<<endl;
+    cout<<"for modrate press 2"<<endl;
+    cout<<"for hard press 3"<<endl;
+    cin>>choice;
+    switch (choice) {
+        case 1 :  //easy mode
+            
+            cout<<"EASY MODE"<<endl;
+            // random number generator
+            srand(time(0));
+
+            // Generate number between 1 and 9
+            random = rand() % 10 ;
+            cout<<"you have 3 chance to win "<<endl;
+            for(int i=0;i<3;i++){
+                cout<<"enter your guess " <<i+1 <<" (between 1 to 9) "<<endl;
+                cin>>guess;
+                if(guess == random){
+                    cout<<"YES , The correct no. is: "<<random<<endl;
+                    cout<<"CONGRATULATION you win the game"<<endl;
+                    break;
+                }
+            }
+            if (guess != random){
+                cout<<"Nope! The correct no. is: "<<random<<endl;
+                cout<<"Better luck next time"<<endl;
+                }
+            break;
+        case 2 :  //modrate mode
+            
+            cout<<"MODRATE MODE"<<endl;
+            // random number generator
+            srand(time(0));
+
+            // Generate number between 1 and 50
+            random = rand() % 25 + 1;
+            cout<<"you have 3 chance to win "<<endl;
+            for(int i=0;i<3;i++){
+                cout<<"enter your guess " <<i+1 <<" (between 1 to 25) "<<endl;
+                cin>>guess;
+                if(guess == random){
+                    cout<<"YES , The correct no. is: "<<random<<endl;
+                    cout<<"CONGRATULATION you win the game"<<endl;
+                    break;
+                }
+            }
+            if (guess != random){
+                cout<<"Nope! The correct no. is: "<<random<<endl;
+                cout<<"Better luck next time"endl;
+                }
+            break;
+        case 3 :  //hard mode
+            
+            cout<<"HARD MODE"<<endl;
+            // random number generator
+            srand(time(0));
+
+            // Generate number between 1 and 10
+            random = rand() % 50 + 1;
+            cout<<"you have 3 chance to win "<<endl;
+            for(int i=0;i<3;i++){
+                cout<<"enter your guess " <<i+1 <<" (between 1 to 50) "<<endl;
+                cin>>guess;
+                if(guess == random){
+                    cout<<"YES , The correct no. is: "<<random<<endl;
+                    cout<<"CONGRATULATION you win the game"<<endl;
+                    break;
+                }
+            }
+            if (guess != random){
+                cout<<"Nope! The correct no. is: "<<random<<endl;
+                cout<<"Better luck next time"<<endl;
+                }
+            break;
+        default:
+            cout<<"Invalid choice"<<endl;
+    }
+    // play again or not
+    cout<<"you want to play it again?"<<endl;
+    cout<<"press 1 to play again"<<endl;
+    cout<<"press 2 to end the game"<<endl;
+    cin>>again;
+    if(again==1){
+        goto start;
+    }
+    else if(again==2){
+        cout<<"GOOD BYE \n THANKYOU FOR PLAYING"<<endl;
+    }
+    else{
+        cout<<"Invelid choice"<<endl;
+    }
+    return 0;
+}
